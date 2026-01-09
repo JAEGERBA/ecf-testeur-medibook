@@ -8,9 +8,6 @@ ${BROWSER}      chrome
 ${HEADLESS}     true
 ${TIMEOUT}      10s
 
-# Comptes du sujet (à condition que l'auth fonctionne + seed OK)
-${PATIENT_EMAIL}      jean.dupont@email.com
-${PATIENT_PASSWORD}   Patient123!
 
 # Textes exacts de ton front
 ${NO_RESULTS_MSG}      Aucun praticien trouvé avec ces critères.
