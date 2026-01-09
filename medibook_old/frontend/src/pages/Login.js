@@ -141,8 +141,8 @@ const Login = () => {
           <div className="test-accounts">
             <p className="test-accounts-title">Comptes de test :</p>
             <ul>
-              <li><strong>Patient :</strong> jean.dupont@email.com / Password123!</li>
-              <li><strong>Praticien :</strong> dr.martin@medibook.fr / Password123!</li>
+              <li><strong>Patient :</strong> jean.dupont@email.com / Patient123!</li>
+              <li><strong>Praticien :</strong> dr.martin@medibook.fr / Praticien123!</li>
             </ul>
           </div>
         </div>

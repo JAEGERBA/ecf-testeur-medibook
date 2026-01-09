@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2 (Python 3.11.12 on darwin)" generated="2026-01-09T13:54:23.536200" rpa="false" schemaversion="5">
+<suite id="s1" name="03 Appointment" source="/Users/baptistejaeger/Downloads/ECF 3/ecf-testeur-medibook/medibook-tests/tests/03_appointment.robot">
+<kw name="Open MediBook Browser" owner="common" type="SETUP">
+<kw name="Create Chrome Options" owner="common">
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-01-09T13:54:23.778903" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x1052e5210&gt;</msg>
+<var>${chrome_options}</var>
+<arg>__import__("selenium.webdriver").webdriver.ChromeOptions()</arg>
+<arg>selenium.webdriver</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-01-09T13:54:23.778587" elapsed="0.000358"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Call Method" owner="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-01-09T13:54:23.779319" elapsed="0.000146"/>
+</kw>
+<arg>'${HEADLESS}'=='true'</arg>
+<arg>Call Method</arg>
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--headless</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2026-01-09T13:54:23.779097" elapsed="0.000440"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--no-sandbox</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-01-09T13:54:23.779647" elapsed="0.000121"/>
+</kw>
+<kw name="Call Method" owner="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>--disable-dev-shm-usage</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" start="2026-01-09T13:54:23.779864" elapsed="0.000113"/>
+</kw>
+<return>
+<value>${chrome_options}</value>
+<status status="PASS" start="2026-01-09T13:54:23.780034" elapsed="0.000059"/>
+</return>
+<msg time="2026-01-09T13:54:23.780209" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x1052e5210&gt;</msg>
+<var>${options}</var>
+<status status="PASS" start="2026-01-09T13:54:23.777938" elapsed="0.002299"/>
+</kw>
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2026-01-09T13:54:23.780797" level="INFO">Opening browser 'chrome' to base url 'about:blank'.</msg>
+<msg time="2026-01-09T13:55:03.583608" level="INFO">Cannot capture screenshot because no browser is open.</msg>
+<msg time="2026-01-09T13:55:03.584801" level="FAIL">NoSuchDriverException: Message: Unable to obtain driver for chrome using Selenium Manager.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</msg>
+<arg>about:blank</arg>
+<arg>${BROWSER}</arg>
+<arg>options=${options}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="FAIL" start="2026-01-09T13:54:23.780376" elapsed="39.816855">NoSuchDriverException: Message: Unable to obtain driver for chrome using Selenium Manager.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</status>
+</kw>
+<kw name="Set Selenium Timeout" owner="SeleniumLibrary">
+<arg>${TIMEOUT}</arg>
+<doc>Sets the timeout that is used by various keywords.</doc>
+<status status="NOT RUN" start="2026-01-09T13:55:03.598220" elapsed="0.000108"/>
+</kw>
+<kw name="Set Window Size" owner="SeleniumLibrary">
+<arg>1400</arg>
+<arg>900</arg>
+<doc>Sets current windows size to given ``width`` and ``height``.</doc>
+<status status="NOT RUN" start="2026-01-09T13:55:03.598512" elapsed="0.000033"/>
+</kw>
+<kw name="Go To Path" owner="common">
+<arg>/</arg>
+<status status="NOT RUN" start="2026-01-09T13:55:03.598866" elapsed="0.000039"/>
+</kw>
+<kw name="Reset Browser State" owner="common">
+<doc>Supprime cookies + local/session storage pour éviter d'être déjà connecté.</doc>
+<status status="NOT RUN" start="2026-01-09T13:55:03.599046" elapsed="0.000027"/>
+</kw>
+<status status="FAIL" start="2026-01-09T13:54:23.777620" elapsed="39.821614">NoSuchDriverException: Message: Unable to obtain driver for chrome using Selenium Manager.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</status>
+</kw>
+<test id="s1-t1" name="Réservation d'un créneau" line="12">
+<status status="FAIL" start="2026-01-09T13:55:03.599387" elapsed="0.000611">Parent suite setup failed:
+NoSuchDriverException: Message: Unable to obtain driver for chrome using Selenium Manager.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</status>
+</test>
+<kw name="Close MediBook Browser" owner="common" type="TEARDOWN">
+<kw name="Close All Browsers" owner="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" start="2026-01-09T13:55:03.601251" elapsed="0.000233"/>
+</kw>
+<status status="PASS" start="2026-01-09T13:55:03.600871" elapsed="0.000694"/>
+</kw>
+<status status="FAIL" start="2026-01-09T13:54:23.538129" elapsed="40.063479">Suite setup failed:
+NoSuchDriverException: Message: Unable to obtain driver for chrome using Selenium Manager.; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+</status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="03 Appointment" id="s1" pass="0" fail="1" skip="0">03 Appointment</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2026-01-09T13:54:23.631556" level="WARN">Error in file '/Users/baptistejaeger/Downloads/ECF 3/ecf-testeur-medibook/medibook-tests/resources/common.resource' on line 40: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+<msg time="2026-01-09T13:54:23.631916" level="WARN">Error in file '/Users/baptistejaeger/Downloads/ECF 3/ecf-testeur-medibook/medibook-tests/resources/common.resource' on line 50: The '[Return]' setting is deprecated. Use the 'RETURN' statement instead.</msg>
+</errors>
+</robot>
