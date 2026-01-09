@@ -1,5 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library   OperatingSystem
 Library    String
 
 *** Variables ***
@@ -15,13 +16,33 @@ ${PATIENT_EMAIL}      jean.dupont@email.com
 ${PATIENT_PASSWORD}   Password123!
 
 *** Keywords ***
+
+#######################################################################################
+# Open MediBook Browser
+#     ${options}=    Create Chrome Options
+#     Open Browser    about:blank    ${BROWSER}    options=${options}
+#     Set Selenium Timeout    ${TIMEOUT}
+#     Set Window Size    1400    900
+#     Go To Path    /
+#     Reset Browser State
+
+
+#######################################################################################
 Open MediBook Browser
-    ${options}=    Create Chrome Options
-    Open Browser    about:blank    ${BROWSER}    options=${options}
+    ${remote}=    Get Environment Variable    REMOTE_URL    ${EMPTY}
+    ${options}=   Create Chrome Options
+
+    IF    '${remote}' != ''
+        Open Browser    about:blank    ${BROWSER}    remote_url=${remote}    options=${options}
+    ELSE
+        Open Browser    about:blank    ${BROWSER}    options=${options}
+    END
+
     Set Selenium Timeout    ${TIMEOUT}
     Set Window Size    1400    900
     Go To Path    /
     Reset Browser State
+#######################################################################################  
 
 Close MediBook Browser
     Close All Browsers

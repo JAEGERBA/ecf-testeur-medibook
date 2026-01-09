@@ -1,0 +1,74 @@
+name: CI - Robot Tests (MediBook)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+
+jobs:
+  robot-e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      # --- INSTALL ---
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build & start MediBook (Docker Compose)
+        run: |
+          docker compose -f medibook/docker-compose.yml up -d --build
+          docker compose -f medibook/docker-compose.yml ps
+
+      - name: Start Selenium (Chrome)
+        run: |
+          docker run -d --name selenium \
+            --shm-size=2g \
+            -p 4444:4444 \
+            selenium/standalone-chrome:latest
+
+      - name: Wait for frontend
+        run: |
+          for i in {1..30}; do
+            if curl -fsS http://localhost:3000 >/dev/null; then
+              echo "Frontend OK"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Frontend not ready"
+          exit 1
+
+      # --- TEST ---
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Robot dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install robotframework robotframework-seleniumlibrary
+
+      - name: Run Robot tests (Remote WebDriver)
+        env:
+          BASE_URL: http://localhost:3000
+          REMOTE_URL: http://localhost:4444/wd/hub
+        run: |
+          mkdir -p medibook-tests/results
+          robot -d medibook-tests/results medibook-tests/tests
+
+      # --- REPORT ---
+      - name: Upload Robot report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-results
+          path: medibook-tests/results
+
+      # --- CLEANUP ---
+      - name: Cleanup
+        if: always()
+        run: |
+          docker logs selenium --tail 50 || true
+          docker rm -f selenium || true
+          docker compose -f medibook/docker-compose.yml down -v --remove-orphans
