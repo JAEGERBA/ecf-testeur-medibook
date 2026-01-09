@@ -36,10 +36,9 @@ Validate Logged In User
     Element Should Contain          css:.user-name    ${firstName}
 
 Log Registration Error And Fail
-    [Documentation]    Log l'erreur UI si présente puis échoue.
-    ${hasAlert}=    Run Keyword And Return Status    Page Should Contain Element    css:div[role="alert"]
+    ${alert}=    Run Keyword And Return Status    Page Should Contain Element    css:div[role="alert"]
 
-    IF    ${hasAlert}
+    IF    ${alert}
         ${msg}=    Get Text    css:div[role="alert"]
         Log    Registration failed with alert: ${msg}    console=True
     ELSE

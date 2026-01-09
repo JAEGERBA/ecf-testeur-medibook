@@ -7,9 +7,6 @@ ${BASE_URL}     http://localhost:3000
 ${BROWSER}      chrome
 ${HEADLESS}     true
 ${TIMEOUT}      10s
-
-
-# Textes exacts de ton front
 ${NO_RESULTS_MSG}      Aucun praticien trouvé avec ces critères.
 ${APPT_PAGE_TITLE}     Mes rendez-vous
 ${APPT_CONFIRMED_TXT}  Rendez-vous confirmé
@@ -48,13 +45,10 @@ Generate Unique Email
 
 Click Button Contains Text
     [Arguments]    ${text}
-    [Documentation]    Clique un bouton par texte avec scroll + attente + fallback JS.
     ${btn}=    Set Variable    xpath=//button[contains(normalize-space(.), "${text}")]
 
     Wait Until Element Is Visible    ${btn}    ${TIMEOUT}
     Scroll Element Into View         ${btn}
-
-    # Attendre qu'il soit cliquable (pas recouvert)
     Wait Until Keyword Succeeds      10x    300ms    Element Should Be Enabled    ${btn}
 
     ${status}    ${msg}=    Run Keyword And Ignore Error    Click Element    ${btn}
@@ -62,7 +56,6 @@ Click Button Contains Text
 
 Click Element Via JS
     [Arguments]    ${locator}
-    [Documentation]    Fallback: clique via JavaScript (utile si overlay bloque le clic).
     Execute JavaScript    document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.click();    ${locator}
 
 Wait Alert Error Contains
@@ -73,7 +66,6 @@ Wait Alert Error Contains
 
 # obligé d'ajouter ça car sinon je suis tt le temps connecté et ça empeche de tester l'inscription
 Reset Browser State
-    [Documentation]    Supprime cookies + local/session storage pour éviter d'être déjà connecté.
     Delete All Cookies
     Execute Javascript    window.localStorage.clear();
     Execute Javascript    window.sessionStorage.clear();
