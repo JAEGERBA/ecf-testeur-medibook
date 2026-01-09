@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../resources/common.resource
-Resource    ../resources/POM/register.resource
+Resource    ../resources/POM/Register.resource
 
 Suite Setup       Open MediBook Browser
 Suite Teardown    Close MediBook Browser

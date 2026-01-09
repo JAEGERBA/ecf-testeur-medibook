@@ -1,9 +1,9 @@
 *** Settings ***
 Resource    ../resources/common.resource
-Resource    ../resources/POM/login.resource
-Resource    ../resources/POM/search.resource
+Resource    ../resources/POM/Login.resource
+Resource    ../resources/POM/Search.resource
 Resource    ../resources/POM/PractitionerDetail.resource
-Resource    ../resources/POM/appointments.resource
+Resource    ../resources/POM/Appointments.resource
 
 Suite Setup       Open MediBook Browser
 Suite Teardown    Close MediBook Browser
